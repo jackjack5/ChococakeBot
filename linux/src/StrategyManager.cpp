@@ -1,0 +1,1 @@
+../../windows/BasicBot/StrategyManager.cpp

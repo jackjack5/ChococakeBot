@@ -1,0 +1,1 @@
+../../windows/BasicBot/ScoutManager.cpp

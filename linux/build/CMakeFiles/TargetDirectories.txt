@@ -1,0 +1,3 @@
+/home/ChococakeBot/linux/build/CMakeFiles/edit_cache.dir
+/home/ChococakeBot/linux/build/CMakeFiles/rebuild_cache.dir
+/home/ChococakeBot/linux/build/CMakeFiles/ChococakeAIModule.dir
