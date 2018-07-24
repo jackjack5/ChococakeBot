@@ -27,6 +27,13 @@ namespace MyBot
 		void executeWorkerTraining();
 		void executeSupplyManagement();
 		void executeBasicCombatUnitTraining();
+		void executeHydraTraining();
+		void executeLurkerTraining();
+		void executeMutalTraining();
+		//void executeBasicCombatUnitTraining();
+		//void executeBasicCombatUnitTraining();
+		//void executeBasicCombatUnitTraining();
+
 
 		bool isFullScaleAttackStarted;
 		void executeCombat();
