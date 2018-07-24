@@ -687,109 +687,226 @@ void StrategyManager::executeCombat()
 // Hong make functions start
 // CombatUnitTraining functions
 // 히드라 생성 코드 : 정상 생산 확인
-void StrategyManager::executeHydraTraining()
+void StrategyManager::unitTrainging()
 {
+
 	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
 	if (isInitialBuildOrderFinished == false) {
 		return;
 	}
 
-	// hydra 생산
-	if (BWAPI::Broodwar->self()->minerals() >= 75 && BWAPI::Broodwar->self()->gas() >= 25 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {
+		for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 		{
-			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-			{
-				if (unit->getType() == BWAPI::UnitTypes::Zerg_Hydralisk_Den){
-					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
-						BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getAdvancedCombatUnitType(BWAPI::Races::Zerg));
-					}
-				}				
-			}
+			//TODO
 		}
 	}
-}
-
-
-// 럴커 생성 코드
-void StrategyManager::executeLurkerTraining()
-{
-	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
-	if (isInitialBuildOrderFinished == false) {
-		return;
-	}
-
-	// 럴커 업그레이드 확인
-	if (!BWAPI::Broodwar->self()->isResearching(BWAPI::TechTypes::Lurker_Aspect)){
-		return;
-	}
-
-	// 럴커 생산
-	if (BWAPI::Broodwar->self()->minerals() >= 50 && BWAPI::Broodwar->self()->gas() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) {
+		for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 		{
-			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-			{
-				if (unit->getType() == BWAPI::UnitTypes::Zerg_Hydralisk){
-					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
-						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Lurker);
+			if (unit->getType() == BWAPI::UnitTypes::Terran_Physics_Lab){
+				// 배틀크루저 생성
+				if (BWAPI::Broodwar->self()->minerals() >= 400 && BWAPI::Broodwar->self()->gas() >= 300 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Battlecruiser);
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Terran_Machine_Shop){
+				// 탱크 생성
+				if (BWAPI::Broodwar->self()->minerals() >= 150 && BWAPI::Broodwar->self()->gas() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Siege_Tank_Tank_Mode);
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Terran_Armory){
+				// 골리앗 생성				
+				if (BWAPI::Broodwar->self()->minerals() >= 100 && BWAPI::Broodwar->self()->gas() >= 50 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Goliath);
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Terran_Factory){
+				// 벌처 생성
+				if (BWAPI::Broodwar->self()->minerals() >= 75 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Vulture);
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Terran_Barracks){
+				// 마린 생성
+				if (BWAPI::Broodwar->self()->minerals() >= 50 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Marine);
+						break;
 					}
 				}
 			}
 		}
 	}
-	
-}
+	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg) {
 
-// 뮤탈 생성 코드
-void StrategyManager::executeMutalTraining()
-{
-	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
-	if (isInitialBuildOrderFinished == false) {
-		return;
-	}
-
-	// 뮤탈 생성
-	if (BWAPI::Broodwar->self()->minerals() >= 50 && BWAPI::Broodwar->self()->gas() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+		for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 		{
-			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-			{
-				if (unit->getType() == BWAPI::UnitTypes::Zerg_Spire){
-					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
-						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Mutalisk);
-					}
-				}
-			}
-		}
-	}
-}
-
-// 울트라 생성 코드
-void StrategyManager::executeMutalTraining()
-{
-	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
-	if (isInitialBuildOrderFinished == false) {
-		return;
-	}
-
-	// 1초에 한번만 실행
-	if (BWAPI::Broodwar->getFrameCount() % 24 != 0) {
-		return;
-	}
-
-
-	// 뮤탈 생성
-	if (BWAPI::Broodwar->self()->minerals() >= 200 && BWAPI::Broodwar->self()->gas() >= 200 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
-		{
-			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-			{
-				if (unit->getType() == BWAPI::UnitTypes::Zerg_Ultralisk_Cavern){
+			if (unit->getType() == BWAPI::UnitTypes::Zerg_Ultralisk_Cavern){
+				// 울트라 생성
+				if (BWAPI::Broodwar->self()->minerals() >= 200 && BWAPI::Broodwar->self()->gas() >= 200 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
 					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
 						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Ultralisk);
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Zerg_Spire){
+				// 뮤탈 생성
+				if (BWAPI::Broodwar->self()->minerals() >= 50 && BWAPI::Broodwar->self()->gas() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Mutalisk);
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Zerg_Hydralisk){
+				// 럴커 생성
+				if (!BWAPI::Broodwar->self()->isResearching(BWAPI::TechTypes::Lurker_Aspect)){
+					continue;
+				}
+				if (BWAPI::Broodwar->self()->minerals() >= 50 && BWAPI::Broodwar->self()->gas() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Lurker);
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Zerg_Hydralisk_Den){
+				// 히드라 생성
+				if (BWAPI::Broodwar->self()->minerals() >= 75 && BWAPI::Broodwar->self()->gas() >= 25 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getAdvancedCombatUnitType(BWAPI::Races::Zerg));
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Zerg_Spawning_Pool){
+				// 저글링 생성
+				if (BWAPI::Broodwar->self()->minerals() >= 50 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Zergling);
+						break;
 					}
 				}
 			}
 		}
 	}
 }
+//void StrategyManager::executeHydraTraining()
+//{
+//	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
+//	if (isInitialBuildOrderFinished == false) {
+//		return;
+//	}
+//
+//	// hydra 생산
+//	if (BWAPI::Broodwar->self()->minerals() >= 75 && BWAPI::Broodwar->self()->gas() >= 25 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+//		{
+//			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
+//			{
+//				if (unit->getType() == BWAPI::UnitTypes::Zerg_Hydralisk_Den){
+//					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
+//						BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getAdvancedCombatUnitType(BWAPI::Races::Zerg));
+//					}
+//				}				
+//			}
+//		}
+//	}
+//}
+//
+//
+//// 럴커 생성 코드
+//void StrategyManager::executeLurkerTraining()
+//{
+//	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
+//	if (isInitialBuildOrderFinished == false) {
+//		return;
+//	}
+//
+//	// 럴커 업그레이드 확인
+//	if (!BWAPI::Broodwar->self()->isResearching(BWAPI::TechTypes::Lurker_Aspect)){
+//		return;
+//	}
+//
+//	// 럴커 생산
+//	if (BWAPI::Broodwar->self()->minerals() >= 50 && BWAPI::Broodwar->self()->gas() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+//		{
+//			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
+//			{
+//				if (unit->getType() == BWAPI::UnitTypes::Zerg_Hydralisk){
+//					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
+//						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Lurker);
+//					}
+//				}
+//			}
+//		}
+//	}
+//	
+//}
+//
+//// 뮤탈 생성 코드
+//void StrategyManager::executeMutalTraining()
+//{
+//	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
+//	if (isInitialBuildOrderFinished == false) {
+//		return;
+//	}
+//
+//	// 뮤탈 생성
+//	if (BWAPI::Broodwar->self()->minerals() >= 50 && BWAPI::Broodwar->self()->gas() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+//		{
+//			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
+//			{
+//				if (unit->getType() == BWAPI::UnitTypes::Zerg_Spire){
+//					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
+//						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Mutalisk);
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
+//
+//// 울트라 생성 코드
+//void StrategyManager::executeMutalTraining()
+//{
+//	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
+//	if (isInitialBuildOrderFinished == false) {
+//		return;
+//	}
+//
+//	// 울트라 생성
+//	if (BWAPI::Broodwar->self()->minerals() >= 200 && BWAPI::Broodwar->self()->gas() >= 200 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+//		{
+//			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
+//			{
+//				if (unit->getType() == BWAPI::UnitTypes::Zerg_Ultralisk_Cavern){
+//					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
+//						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Ultralisk);
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
+
+
+
+
 // Hong make functions end
 
 

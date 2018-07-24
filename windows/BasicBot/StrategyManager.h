@@ -30,6 +30,7 @@ namespace MyBot
 		void executeHydraTraining();
 		void executeLurkerTraining();
 		void executeMutalTraining();
+		void unitTrainging();
 		//void executeBasicCombatUnitTraining();
 		//void executeBasicCombatUnitTraining();
 		//void executeBasicCombatUnitTraining();
