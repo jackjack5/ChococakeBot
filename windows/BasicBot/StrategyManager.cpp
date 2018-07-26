@@ -50,7 +50,10 @@ void StrategyManager::update()
 
 	//executeBasicCombatUnitTraining();
 
-	executeHydraTraining();
+	//executeHydraTraining();
+
+	unitTrainging();
+	techBuilding();
 
 	executeCombat();
 
@@ -146,6 +149,8 @@ void StrategyManager::setInitialBuildOrder()
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Argus_Jewel);
 
 		// 캐리어
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Stargate);
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Fleet_Beacon);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Carrier);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Carrier_Capacity);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
@@ -696,9 +701,74 @@ void StrategyManager::unitTrainging()
 	}
 
 	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {
+
 		for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-		{
-			//TODO
+		{			
+			if (unit->getType() == BWAPI::UnitTypes::Protoss_Fleet_Beacon){
+				// 캐리어 생성
+				if (BWAPI::Broodwar->self()->minerals() >= 350 && BWAPI::Broodwar->self()->gas() >= 250 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Carrier);
+						if (BWAPI::UpgradeTypes::Carrier_Capacity)
+						{
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+						}
+						else{
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Interceptor);
+						}
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Protoss_Templar_Archives){
+				// 아칸생성
+				if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_High_Templar) >= 2)
+				{
+					if (BWAPI::Broodwar->self()->supplyUsed() < 390) {
+						if (unit->isTraining() == false) {
+							BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Archon);
+							break;
+						}
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Protoss_Templar_Archives){
+				// 다크템플러				
+				if (BWAPI::Broodwar->self()->minerals() >= 125 && BWAPI::Broodwar->self()->gas() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Dark_Templar);
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Protoss_Cybernetics_Core){
+				// 드라군				
+				if (BWAPI::Broodwar->self()->minerals() >= 125 && BWAPI::Broodwar->self()->gas() >= 50 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Dragoon);
+						break;
+					}
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Protoss_Gateway){
+				// 질럿				
+				if (BWAPI::Broodwar->self()->minerals() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
+					if (unit->isTraining() == false) {
+						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Zealot);
+						break;
+					}
+				}
+			}
 		}
 	}
 	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) {
@@ -806,6 +876,74 @@ void StrategyManager::unitTrainging()
 		}
 	}
 }
+
+
+void StrategyManager::techBuilding()
+{
+	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {
+
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Gateway) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Gateway, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Cybernetics_Core) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Cybernetics_Core, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Citadel_of_Adun) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Citadel_of_Adun, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Templar_Archives) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Templar_Archives, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Templar_Archives) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Templar_Archives, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Robotics_Facility) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Robotics_Facility, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Robotics_Support_Bay) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Robotics_Support_Bay, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Observatory) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Observatory, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Stargate) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Stargate, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Fleet_Beacon) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Fleet_Beacon, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Arbiter_Tribunal) == 0)
+		{
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Arbiter_Tribunal, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+	}
+	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) {
+	}
+	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg) {
+	}
+}
+
 //void StrategyManager::executeHydraTraining()
 //{
 //	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
