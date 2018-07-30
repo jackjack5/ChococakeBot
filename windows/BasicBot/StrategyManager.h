@@ -32,6 +32,9 @@ namespace MyBot
 		//void executeMutalTraining();
 		void unitTrainging();
 		void techBuilding();
+		void expentionBase();
+		void attackCombatUnit();
+		void moveChokePoint();
 		//void executeBasicCombatUnitTraining();
 		//void executeBasicCombatUnitTraining();
 		//void executeBasicCombatUnitTraining();
