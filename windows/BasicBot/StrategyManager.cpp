@@ -55,7 +55,7 @@ void StrategyManager::update()
 	unitTrainging();
 	techBuilding();
 
-	executeCombat();
+	//executeCombat();
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 
@@ -776,7 +776,6 @@ void StrategyManager::attackCombatUnit()
 	}
 	
 }
-
 
 
 // Hong make functions start
