@@ -1,11 +1,17 @@
-﻿Build started 2018-07-31 오후 7:27:26.
+﻿Build started 2018-07-31 오후 10:32:10.
      1>Project "D:\workspace_star\ChococakeBot\windows\BasicBot.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\development tools\VC\bin\CL.exe /c /IC:/StarCraft/bwlibrary/BWAPI412/include /IC:/StarCraft/bwlibrary/BWTA22/include /Zi /nologo /W3 /WX- /MP /O2 /Oi /Oy- /GL /D NOMINMAX /D WIN32 /D NDEBUG /D _CONSOLE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\BasicBot\\" /Fd"Release\BasicBot\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt BasicBot\StrategyManager.cpp
+         D:\development tools\VC\bin\CL.exe /c /IC:/StarCraft/bwlibrary/BWAPI412/include /IC:/StarCraft/bwlibrary/BWTA22/include /Zi /nologo /W3 /WX- /MP /O2 /Oi /Oy- /GL /D NOMINMAX /D WIN32 /D NDEBUG /D _CONSOLE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\BasicBot\\" /Fd"Release\BasicBot\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt BasicBot\BuildManager.cpp BasicBot\ConstructionManager.cpp BasicBot\GameCommander.cpp BasicBot\MyBotModule.cpp BasicBot\ScoutManager.cpp BasicBot\StrategyManager.cpp BasicBot\UXManager.cpp BasicBot\WorkerManager.cpp BasicBot\main.cpp
+         BuildManager.cpp
+         ConstructionManager.cpp
+         GameCommander.cpp
+         MyBotModule.cpp
+         ScoutManager.cpp
          StrategyManager.cpp
-     1>BasicBot\StrategyManager.cpp(727): warning C4805: '!=' : unsafe mix of type 'int' and type 'bool' in operation
-     1>BasicBot\StrategyManager.cpp(1275): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 D:\development tools\VC\include\stdio.h(211) : see declaration of 'fopen'
+         UXManager.cpp
+         WorkerManager.cpp
+     1>BasicBot\StrategyManager.cpp(726): warning C4805: '!=' : unsafe mix of type 'int' and type 'bool' in operation
+         main.cpp
        Link:
          D:\development tools\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\workspace_star\ChococakeBot\windows\Release\BasicBot\BasicBot.exe" /INCREMENTAL:NO /NOLOGO Advapi32.lib ws2_32.lib C:/StarCraft/bwlibrary/BWAPI412/lib/BWAPI.lib C:/StarCraft/bwlibrary/BWAPI412/lib/BWAPIClient.lib C:/StarCraft/bwlibrary/BWTA22/lib/BWTA.lib "C:/StarCraft/bwlibrary/BWTA22/lib/libCGAL-vc120-mt-4.4.lib" "C:/StarCraft/bwlibrary/BWTA22/lib/libboost_thread-vc120-mt-1_56.lib" "C:/StarCraft/bwlibrary/BWTA22/lib/libboost_system-vc120-mt-1_56.lib" "C:/StarCraft/bwlibrary/BWTA22/lib/libboost_filesystem-vc120-mt-1_56.lib" "C:/StarCraft/bwlibrary/BWTA22/lib/libgmp-10.lib" "C:/StarCraft/bwlibrary/BWTA22/lib/libmpfr-4.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\workspace_star\ChococakeBot\windows\Release\BasicBot\BasicBot.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\workspace_star\ChococakeBot\windows\Release\BasicBot\BasicBot.lib" /MACHINE:X86 /SAFESEH Release\BasicBot\ConstructionTask.obj
          Release\BasicBot\ConstructionManager.obj
@@ -34,4 +40,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:11.74
+Time Elapsed 00:00:18.12

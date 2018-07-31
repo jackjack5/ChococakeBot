@@ -20,7 +20,7 @@ void StrategyManager::onStart()
 	// 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가
 
 	// 과거 게임 기록을 로딩합니다
-	loadGameRecordList();
+	//loadGameRecordList();
 
 	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
@@ -33,7 +33,7 @@ void StrategyManager::onEnd(bool isWinner)
 	// 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가
 
 	// 과거 게임 기록 + 이번 게임 기록을 저장합니다
-	saveGameRecordList(isWinner);
+	//saveGameRecordList(isWinner);
 
 	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
@@ -44,23 +44,23 @@ void StrategyManager::update()
 		isInitialBuildOrderFinished = true;
 	}
 
-	executeWorkerTraining();
+	//executeWorkerTraining();
 
-	executeSupplyManagement();
+	//executeSupplyManagement();
 
 	//executeBasicCombatUnitTraining();
 
 	//executeHydraTraining();
 
-	unitTrainging();
-	techBuilding();
+	//unitTrainging();
+	//techBuilding();
 
 	//executeCombat();
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 
 	// 이번 게임의 로그를 남깁니다
-	saveGameLog();
+	//saveGameLog();
 
 	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
@@ -71,20 +71,19 @@ void StrategyManager::setInitialBuildOrder()
 
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getBasicSupplyProviderUnitType(), BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Gateway, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Zealot);
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getBasicSupplyProviderUnitType(), BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Gateway, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Zealot);
 
 		/*
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Assimilator, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Forge, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Photon_Cannon, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
-
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Gateway, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::
+		::SeedPositionStrategy::MainBaseLocation);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Zealot);
 
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Cybernetics_Core, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
@@ -183,12 +182,12 @@ void StrategyManager::setInitialBuildOrder()
 	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) {
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getBasicSupplyProviderUnitType(), BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Barracks, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Marine);
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getBasicSupplyProviderUnitType(), BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Barracks, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Marine);
 
 		/*
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Barracks, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
@@ -308,8 +307,8 @@ void StrategyManager::setInitialBuildOrder()
 	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg) {
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
+		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 		//BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Spawning_Pool);
 		//BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Extractor, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 		//BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
@@ -777,9 +776,6 @@ void StrategyManager::attackCombatUnit()
 	
 }
 
-
-// Hong make functions start
-// CombatUnitTraining functions
 void StrategyManager::unitTrainging()
 {
 
@@ -975,114 +971,114 @@ void StrategyManager::techBuilding()
 
 	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {
 
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Gateway) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Gateway) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Gateway, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Cybernetics_Core) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Cybernetics_Core) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Cybernetics_Core, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Citadel_of_Adun) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Citadel_of_Adun) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Citadel_of_Adun, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Templar_Archives) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Templar_Archives) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Templar_Archives, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Templar_Archives) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Templar_Archives) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Templar_Archives, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Robotics_Facility) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Robotics_Facility) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Robotics_Facility, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Robotics_Support_Bay) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Robotics_Support_Bay) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Robotics_Support_Bay, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Observatory) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Observatory) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Observatory, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Stargate) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Stargate) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Stargate, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Fleet_Beacon) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Fleet_Beacon) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Fleet_Beacon, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Protoss_Arbiter_Tribunal) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Arbiter_Tribunal) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Arbiter_Tribunal, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
 	}
 	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) {
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Barracks) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Barracks) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Barracks, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Engineering_Bay) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Engineering_Bay) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Engineering_Bay, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Academy) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Academy) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Academy, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Comsat_Station) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Comsat_Station) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Comsat_Station);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Factory) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Factory) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Factory, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Machine_Shop) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Machine_Shop) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Machine_Shop);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Armory) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Armory) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Armory, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Starport) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Starport) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Starport, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Control_Tower) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Control_Tower) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Control_Tower, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Science_Facility) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Science_Facility) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Science_Facility, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Terran_Physics_Lab) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Physics_Lab) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Physics_Lab, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
@@ -1090,52 +1086,52 @@ void StrategyManager::techBuilding()
 
 	}
 	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg) {
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Spawning_Pool) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Spawning_Pool) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Spawning_Pool, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Evolution_Chamber) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Evolution_Chamber) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Evolution_Chamber, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Hydralisk_Den) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hydralisk_Den) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Hydralisk_Den, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Lair) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Lair) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Lair);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Spire) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Spire) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Spire, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Queens_Nest) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Queens_Nest) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Queens_Nest, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Hive) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hive) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Hive);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Ultralisk_Cavern) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Ultralisk_Cavern) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Ultralisk_Cavern, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Defiler_Mound) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Defiler_Mound) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Defiler_Mound, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 			return;
 		}
-		if (BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Greater_Spire) == 0)
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Greater_Spire) == 0)
 		{
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Greater_Spire);
 			return;
@@ -1147,15 +1143,127 @@ void StrategyManager::expentionBase()
 {
 
 	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Nexus, BuildOrderItem::SeedPositionStrategy::FirstExpansionLocation);
 	}
 	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) {
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Hatchery, BuildOrderItem::SeedPositionStrategy::FirstExpansionLocation);
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Command_Center, BuildOrderItem::SeedPositionStrategy::FirstExpansionLocation);
 	}
 	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg) {
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Hatchery, BuildOrderItem::SeedPositionStrategy::FirstExpansionLocation);
 	}
 
 }
+
+void StrategyManager::developUpgrade(){
+	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) 
+	{
+		
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Cybernetics_Core) > 0 && 
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Singularity_Charge)){			
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Singularity_Charge);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Citadel_of_Adun) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Leg_Enhancements)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Leg_Enhancements);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Templar_Archives) > 0 &&
+			!BWAPI::Broodwar->self()->hasResearched(BWAPI::TechTypes::Psionic_Storm)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::TechTypes::Psionic_Storm);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Robotics_Facility) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Gravitic_Drive)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Gravitic_Drive);
+			return;
+		}		
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Observatory) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Gravitic_Boosters)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Gravitic_Boosters);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Fleet_Beacon) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Carrier_Capacity)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Carrier_Capacity);
+			return;
+		}
+	}
+	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) 
+	{
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Academy) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::U_238_Shells)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::U_238_Shells);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Academy) > 0 &&
+			!BWAPI::Broodwar->self()->hasResearched(BWAPI::TechTypes::Stim_Packs)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::TechTypes::Stim_Packs);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Machine_Shop) > 0 &&
+			!BWAPI::Broodwar->self()->hasResearched(BWAPI::TechTypes::Spider_Mines)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::TechTypes::Spider_Mines);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Machine_Shop) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Ion_Thrusters)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Ion_Thrusters);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Machine_Shop) > 0 &&
+			!BWAPI::Broodwar->self()->hasResearched(BWAPI::TechTypes::Tank_Siege_Mode)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::TechTypes::Tank_Siege_Mode);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Armory) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Charon_Boosters)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Charon_Boosters);
+			return;
+		}
+	}
+	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg)
+	{
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Spawning_Pool) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Metabolic_Boost)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Metabolic_Boost);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hydralisk_Den) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Grooved_Spines)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Grooved_Spines);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hydralisk_Den) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Muscular_Augments)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Muscular_Augments);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Lair) > 0 &&
+			BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hydralisk_Den) > 0 &&
+			!BWAPI::Broodwar->self()->hasResearched(BWAPI::TechTypes::Lurker_Aspect)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::TechTypes::Lurker_Aspect);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Lair) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Pneumatized_Carapace)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Pneumatized_Carapace);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Ultralisk_Cavern) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Anabolic_Synthesis)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Anabolic_Synthesis);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Ultralisk_Cavern) > 0&&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Chitinous_Plating)){
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Chitinous_Plating);
+			return;
+		}
+	}
+
+}
+
 
 //void StrategyManager::executeHydraTraining()
 //{
@@ -1263,130 +1371,130 @@ void StrategyManager::expentionBase()
 
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 // 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가
-void StrategyManager::loadGameRecordList()
-{
-	// 과거의 게임에서 bwapi-data\write 폴더에 기록했던 파일은 대회 서버가 bwapi-data\read 폴더로 옮겨놓습니다
-	// 따라서, 파일 로딩은 bwapi-data\read 폴더로부터 하시면 됩니다
-
-	// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
-	std::string gameRecordFileName = GAMERECORDFILE_READ;
-
-	FILE *file = fopen(gameRecordFileName.c_str(), "r");
-
-	if (file==NULL)
-	{
-		std::cout << "loadGameRecord failed. Could not open file :" << gameRecordFileName.c_str() << std::endl;
-	}
-	else
-	{
-		std::cout << "loadGameRecord from file: " << gameRecordFileName.c_str() << std::endl;
-		char line[4096];
-		while (fgets(line, sizeof line, file) != nullptr)
-		{
-			std::stringstream ss(line);
-
-			GameRecord tempGameRecord;
-			ss >> tempGameRecord.mapName;
-			ss >> tempGameRecord.myName;
-			ss >> tempGameRecord.myRace;
-			ss >> tempGameRecord.myWinCount;
-			ss >> tempGameRecord.myLoseCount;
-			ss >> tempGameRecord.enemyName;
-			ss >> tempGameRecord.enemyRace;
-			ss >> tempGameRecord.enemyRealRace;
-			ss >> tempGameRecord.gameFrameCount;
-
-			gameRecordList.push_back(tempGameRecord);
-		}
-		fclose(file);
-	}
-}
-
-void StrategyManager::saveGameRecordList(bool isWinner)
-{
-	// 이번 게임의 파일 저장은 bwapi-data\write 폴더에 하시면 됩니다.
-	// bwapi-data\write 폴더에 저장된 파일은 대회 서버가 다음 경기 때 bwapi-data\read 폴더로 옮겨놓습니다
-
-	// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
-	std::string gameRecordFileName = GAMERECORDFILE;
-
-	std::cout << "saveGameRecord to file: " << gameRecordFileName.c_str() << std::endl;
-
-	std::string mapName = BWAPI::Broodwar->mapFileName();
-	std::replace(mapName.begin(), mapName.end(), ' ', '_');
-	std::string enemyName = BWAPI::Broodwar->enemy()->getName();
-	std::replace(enemyName.begin(), enemyName.end(), ' ', '_');
-	std::string myName = BWAPI::Broodwar->self()->getName();
-	std::replace(myName.begin(), myName.end(), ' ', '_');
-
-	/// 이번 게임에 대한 기록
-	GameRecord thisGameRecord;
-	thisGameRecord.mapName = mapName;
-	thisGameRecord.myName = myName;
-	thisGameRecord.myRace = BWAPI::Broodwar->self()->getRace().c_str();
-	thisGameRecord.enemyName = enemyName;
-	thisGameRecord.enemyRace = BWAPI::Broodwar->enemy()->getRace().c_str();
-	thisGameRecord.enemyRealRace = InformationManager::Instance().enemyRace.c_str();
-	thisGameRecord.gameFrameCount = BWAPI::Broodwar->getFrameCount();
-	if (isWinner) {
-		thisGameRecord.myWinCount = 1;
-		thisGameRecord.myLoseCount = 0;
-	}
-	else {
-		thisGameRecord.myWinCount = 0;
-		thisGameRecord.myLoseCount = 1;
-	}
-	// 이번 게임 기록을 전체 게임 기록에 추가
-	gameRecordList.push_back(thisGameRecord);
-
-	// 전체 게임 기록 write
-	std::stringstream ss;
-	for (GameRecord gameRecord : gameRecordList) {
-		ss << gameRecord.mapName << " "
-			<< gameRecord.myName << " "
-			<< gameRecord.myRace << " "
-			<< gameRecord.myWinCount << " "
-			<< gameRecord.myLoseCount << " "
-			<< gameRecord.enemyName << " "
-			<< gameRecord.enemyRace << " "
-			<< gameRecord.enemyRealRace << " "
-			<< gameRecord.gameFrameCount << "\n";
-
-	}
-	Logger::overwriteToFile(gameRecordFileName, ss.str());
-}
-
-void StrategyManager::saveGameLog()
-{
-	// 100 프레임 (5초) 마다 1번씩 로그를 기록합니다
-	// 참가팀 당 용량 제한이 있고, 타임아웃도 있기 때문에 자주 하지 않는 것이 좋습니다
-	// 로그는 봇 개발 시 디버깅 용도로 사용하시는 것이 좋습니다
-	if (BWAPI::Broodwar->getFrameCount() % 100 != 0) {
-		return;
-	}
-
-	// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
-	std::string gameLogFileName = GAMELOGFILE;
-
-	std::string mapName = BWAPI::Broodwar->mapFileName();
-	std::replace(mapName.begin(), mapName.end(), ' ', '_');
-	std::string enemyName = BWAPI::Broodwar->enemy()->getName();
-	std::replace(enemyName.begin(), enemyName.end(), ' ', '_');
-	std::string myName = BWAPI::Broodwar->self()->getName();
-	std::replace(myName.begin(), myName.end(), ' ', '_');
-
-	std::stringstream ss;
-	ss << mapName << " "
-		<< myName << " "
-		<< BWAPI::Broodwar->self()->getRace().c_str() << " "
-		<< enemyName << " "
-		<< InformationManager::Instance().enemyRace.c_str() << " "
-		<< BWAPI::Broodwar->getFrameCount() << " "
-		<< BWAPI::Broodwar->self()->supplyUsed() << " "
-		<< BWAPI::Broodwar->self()->supplyTotal() << " "
-		<< "\n";
-
-	Logger::appendTextToFile(gameLogFileName, ss.str());
-}
+//void StrategyManager::loadGameRecordList()
+//{
+//	// 과거의 게임에서 bwapi-data\write 폴더에 기록했던 파일은 대회 서버가 bwapi-data\read 폴더로 옮겨놓습니다
+//	// 따라서, 파일 로딩은 bwapi-data\read 폴더로부터 하시면 됩니다
+//
+//	// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
+//	std::string gameRecordFileName = GAMERECORDFILE_READ;
+//
+//	FILE *file = fopen(gameRecordFileName.c_str(), "r");
+//
+//	if (file==NULL)
+//	{
+//		std::cout << "loadGameRecord failed. Could not open file :" << gameRecordFileName.c_str() << std::endl;
+//	}
+//	else
+//	{
+//		std::cout << "loadGameRecord from file: " << gameRecordFileName.c_str() << std::endl;
+//		char line[4096];
+//		while (fgets(line, sizeof line, file) != nullptr)
+//		{
+//			std::stringstream ss(line);
+//
+//			GameRecord tempGameRecord;
+//			ss >> tempGameRecord.mapName;
+//			ss >> tempGameRecord.myName;
+//			ss >> tempGameRecord.myRace;
+//			ss >> tempGameRecord.myWinCount;
+//			ss >> tempGameRecord.myLoseCount;
+//			ss >> tempGameRecord.enemyName;
+//			ss >> tempGameRecord.enemyRace;
+//			ss >> tempGameRecord.enemyRealRace;
+//			ss >> tempGameRecord.gameFrameCount;
+//
+//			gameRecordList.push_back(tempGameRecord);
+//		}
+//		fclose(file);
+//	}
+//}
+//
+//void StrategyManager::saveGameRecordList(bool isWinner)
+//{
+//	// 이번 게임의 파일 저장은 bwapi-data\write 폴더에 하시면 됩니다.
+//	// bwapi-data\write 폴더에 저장된 파일은 대회 서버가 다음 경기 때 bwapi-data\read 폴더로 옮겨놓습니다
+//
+//	// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
+//	std::string gameRecordFileName = GAMERECORDFILE;
+//
+//	std::cout << "saveGameRecord to file: " << gameRecordFileName.c_str() << std::endl;
+//
+//	std::string mapName = BWAPI::Broodwar->mapFileName();
+//	std::replace(mapName.begin(), mapName.end(), ' ', '_');
+//	std::string enemyName = BWAPI::Broodwar->enemy()->getName();
+//	std::replace(enemyName.begin(), enemyName.end(), ' ', '_');
+//	std::string myName = BWAPI::Broodwar->self()->getName();
+//	std::replace(myName.begin(), myName.end(), ' ', '_');
+//
+//	/// 이번 게임에 대한 기록
+//	GameRecord thisGameRecord;
+//	thisGameRecord.mapName = mapName;
+//	thisGameRecord.myName = myName;
+//	thisGameRecord.myRace = BWAPI::Broodwar->self()->getRace().c_str();
+//	thisGameRecord.enemyName = enemyName;
+//	thisGameRecord.enemyRace = BWAPI::Broodwar->enemy()->getRace().c_str();
+//	thisGameRecord.enemyRealRace = InformationManager::Instance().enemyRace.c_str();
+//	thisGameRecord.gameFrameCount = BWAPI::Broodwar->getFrameCount();
+//	if (isWinner) {
+//		thisGameRecord.myWinCount = 1;
+//		thisGameRecord.myLoseCount = 0;
+//	}
+//	else {
+//		thisGameRecord.myWinCount = 0;
+//		thisGameRecord.myLoseCount = 1;
+//	}
+//	// 이번 게임 기록을 전체 게임 기록에 추가
+//	gameRecordList.push_back(thisGameRecord);
+//
+//	// 전체 게임 기록 write
+//	std::stringstream ss;
+//	for (GameRecord gameRecord : gameRecordList) {
+//		ss << gameRecord.mapName << " "
+//			<< gameRecord.myName << " "
+//			<< gameRecord.myRace << " "
+//			<< gameRecord.myWinCount << " "
+//			<< gameRecord.myLoseCount << " "
+//			<< gameRecord.enemyName << " "
+//			<< gameRecord.enemyRace << " "
+//			<< gameRecord.enemyRealRace << " "
+//			<< gameRecord.gameFrameCount << "\n";
+//
+//	}
+//	Logger::overwriteToFile(gameRecordFileName, ss.str());
+//}
+//
+//void StrategyManager::saveGameLog()
+//{
+//	// 100 프레임 (5초) 마다 1번씩 로그를 기록합니다
+//	// 참가팀 당 용량 제한이 있고, 타임아웃도 있기 때문에 자주 하지 않는 것이 좋습니다
+//	// 로그는 봇 개발 시 디버깅 용도로 사용하시는 것이 좋습니다
+//	if (BWAPI::Broodwar->getFrameCount() % 100 != 0) {
+//		return;
+//	}
+//
+//	// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
+//	std::string gameLogFileName = GAMELOGFILE;
+//
+//	std::string mapName = BWAPI::Broodwar->mapFileName();
+//	std::replace(mapName.begin(), mapName.end(), ' ', '_');
+//	std::string enemyName = BWAPI::Broodwar->enemy()->getName();
+//	std::replace(enemyName.begin(), enemyName.end(), ' ', '_');
+//	std::string myName = BWAPI::Broodwar->self()->getName();
+//	std::replace(myName.begin(), myName.end(), ' ', '_');
+//
+//	std::stringstream ss;
+//	ss << mapName << " "
+//		<< myName << " "
+//		<< BWAPI::Broodwar->self()->getRace().c_str() << " "
+//		<< enemyName << " "
+//		<< InformationManager::Instance().enemyRace.c_str() << " "
+//		<< BWAPI::Broodwar->getFrameCount() << " "
+//		<< BWAPI::Broodwar->self()->supplyUsed() << " "
+//		<< BWAPI::Broodwar->self()->supplyTotal() << " "
+//		<< "\n";
+//
+//	Logger::appendTextToFile(gameLogFileName, ss.str());
+//}
 
 // BasicBot 1.1 Patch End //////////////////////////////////////////////////

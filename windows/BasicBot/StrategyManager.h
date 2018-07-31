@@ -35,6 +35,7 @@ namespace MyBot
 		void expentionBase();
 		void attackCombatUnit();
 		void moveChokePoint();
+		void developUpgrade();
 		//void executeBasicCombatUnitTraining();
 		//void executeBasicCombatUnitTraining();
 		//void executeBasicCombatUnitTraining();
