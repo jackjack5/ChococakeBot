@@ -27,10 +27,15 @@ namespace MyBot
 		void executeWorkerTraining();
 		void executeSupplyManagement();
 		void executeBasicCombatUnitTraining();
-		void executeHydraTraining();
-		void executeLurkerTraining();
-		void executeMutalTraining();
+		//void executeHydraTraining();
+		//void executeLurkerTraining();
+		//void executeMutalTraining();
 		void unitTrainging();
+		void techBuilding();
+		void expentionBase();
+		void attackCombatUnit();
+		void moveChokePoint();
+		void developUpgrade();
 		//void executeBasicCombatUnitTraining();
 		//void executeBasicCombatUnitTraining();
 		//void executeBasicCombatUnitTraining();
