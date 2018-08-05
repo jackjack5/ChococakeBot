@@ -43,6 +43,8 @@ namespace MyBot
 
 		bool isFullScaleAttackStarted;
 		void executeCombat();
+        int getaction_from_stdin();
+
 
 	public:
 		/// static singleton 객체를 리턴합니다

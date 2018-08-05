@@ -712,7 +712,8 @@ void StrategyManager::executeSupplyManagement()
 	}
 	if (BWAPI::Broodwar->self()->minerals() >= 100) {
 		BuildManager::Instance().buildQueue.queueAsHighestPriority(MetaType(InformationManager::Instance().getBasicSupplyProviderUnitType()), true);
-	}
+	}ls
+
 
 }
 
@@ -773,7 +774,7 @@ void StrategyManager::attackCombatUnit()
 			}
 		}
 	}
-	
+
 }
 
 void StrategyManager::unitTrainging()
@@ -787,7 +788,7 @@ void StrategyManager::unitTrainging()
 	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {
 
 		for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-		{			
+		{
 			if (unit->getType() == BWAPI::UnitTypes::Protoss_Fleet_Beacon){
 				// 캐리어 생성
 				if (BWAPI::Broodwar->self()->minerals() >= 350 && BWAPI::Broodwar->self()->gas() >= 250 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
@@ -827,7 +828,7 @@ void StrategyManager::unitTrainging()
 				}
 			}
 			else if (unit->getType() == BWAPI::UnitTypes::Protoss_Templar_Archives){
-				// 다크템플러				
+				// 다크템플러
 				if (BWAPI::Broodwar->self()->minerals() >= 125 && BWAPI::Broodwar->self()->gas() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
 					if (unit->isTraining() == false) {
 						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Dark_Templar);
@@ -836,7 +837,7 @@ void StrategyManager::unitTrainging()
 				}
 			}
 			else if (unit->getType() == BWAPI::UnitTypes::Protoss_Cybernetics_Core){
-				// 드라군				
+				// 드라군
 				if (BWAPI::Broodwar->self()->minerals() >= 125 && BWAPI::Broodwar->self()->gas() >= 50 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
 					if (unit->isTraining() == false) {
 						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Dragoon);
@@ -845,7 +846,7 @@ void StrategyManager::unitTrainging()
 				}
 			}
 			else if (unit->getType() == BWAPI::UnitTypes::Protoss_Gateway){
-				// 질럿				
+				// 질럿
 				if (BWAPI::Broodwar->self()->minerals() >= 100 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
 					if (unit->isTraining() == false) {
 						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Zealot);
@@ -877,7 +878,7 @@ void StrategyManager::unitTrainging()
 				}
 			}
 			else if (unit->getType() == BWAPI::UnitTypes::Terran_Armory){
-				// 골리앗 생성				
+				// 골리앗 생성
 				if (BWAPI::Broodwar->self()->minerals() >= 100 && BWAPI::Broodwar->self()->gas() >= 50 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
 					if (unit->isTraining() == false) {
 						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Goliath);
@@ -1155,11 +1156,11 @@ void StrategyManager::expentionBase()
 }
 
 void StrategyManager::developUpgrade(){
-	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) 
+	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss)
 	{
-		
-		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Cybernetics_Core) > 0 && 
-			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Singularity_Charge)){			
+
+		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Cybernetics_Core) > 0 &&
+			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Singularity_Charge)){
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Singularity_Charge);
 			return;
 		}
@@ -1177,7 +1178,7 @@ void StrategyManager::developUpgrade(){
 			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Gravitic_Drive)){
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Gravitic_Drive);
 			return;
-		}		
+		}
 		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Observatory) > 0 &&
 			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::Gravitic_Boosters)){
 			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Gravitic_Boosters);
@@ -1189,7 +1190,7 @@ void StrategyManager::developUpgrade(){
 			return;
 		}
 	}
-	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) 
+	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran)
 	{
 		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Academy) > 0 &&
 			!BWAPI::Broodwar->self()->isUpgrading(BWAPI::UpgradeTypes::U_238_Shells)){
@@ -1264,6 +1265,14 @@ void StrategyManager::developUpgrade(){
 
 }
 
+int StrategyManager::getaction_from_stdin()
+{
+    int a;
+    a<<cin;
+    return a;
+}
+
+
 
 //void StrategyManager::executeHydraTraining()
 //{
@@ -1281,7 +1290,7 @@ void StrategyManager::developUpgrade(){
 //					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
 //						BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getAdvancedCombatUnitType(BWAPI::Races::Zerg));
 //					}
-//				}				
+//				}
 //			}
 //		}
 //	}
@@ -1314,7 +1323,7 @@ void StrategyManager::developUpgrade(){
 //			}
 //		}
 //	}
-//	
+//
 //}
 //
 //// 뮤탈 생성 코드
