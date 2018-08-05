@@ -1268,7 +1268,7 @@ void StrategyManager::developUpgrade(){
 int StrategyManager::getaction_from_stdin()
 {
     int a;
-    a<<cin;
+    cin>>a;
     return a;
 }
 
