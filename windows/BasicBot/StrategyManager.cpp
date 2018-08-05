@@ -712,7 +712,7 @@ void StrategyManager::executeSupplyManagement()
 	}
 	if (BWAPI::Broodwar->self()->minerals() >= 100) {
 		BuildManager::Instance().buildQueue.queueAsHighestPriority(MetaType(InformationManager::Instance().getBasicSupplyProviderUnitType()), true);
-	}ls
+	}
 
 
 }
