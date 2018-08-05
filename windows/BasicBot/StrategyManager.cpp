@@ -716,7 +716,6 @@ void StrategyManager::executeSupplyManagement()
 
 }
 
-
 void StrategyManager::moveChokePoint()
 {
 	BWTA::Chokepoint* firstChokePoint = BWTA::getNearestChokepoint(InformationManager::Instance().getMainBaseLocation(InformationManager::Instance().selfPlayer)->getTilePosition());
@@ -728,8 +727,6 @@ void StrategyManager::moveChokePoint()
 		}
 	}
 }
-
-
 
 void StrategyManager::attackCombatUnit()
 {
@@ -769,6 +766,28 @@ void StrategyManager::attackCombatUnit()
 					if (unit->isIdle()) {
 						CommandUtil::attackMove(unit, targetBaseLocation->getPosition());
 					}
+
+					if (unit->getType() == BWAPI::UnitTypes::Terran_Siege_Tank_Tank_Mode)
+					{
+						int siegeTankRange = BWAPI::UnitTypes::Terran_Siege_Tank_Siege_Mode.groundWeapon().maxRange() - 32;
+						bool haveSiege = BWAPI::Broodwar->self()->hasResearched(BWAPI::TechTypes::Tank_Siege_Mode);
+						if (!haveSiege){
+							continue;
+						}
+						for (auto & enemyUnit : BWAPI::Broodwar->enemy()->getUnits()){
+							if (unit->getDistance(enemyUnit) < siegeTankRange)
+							{
+								unit->siege();
+							}
+							else{
+								unit->unsiege();
+							}
+
+						}
+
+
+					}
+
 				}
 			}
 		}
@@ -960,7 +979,6 @@ void StrategyManager::unitTrainging()
 		}
 	}
 }
-
 
 void StrategyManager::techBuilding()
 {
@@ -1264,6 +1282,43 @@ void StrategyManager::developUpgrade(){
 
 }
 
+void StrategyManager::armamentsExpansion()
+{
+	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {		
+		if (BWAPI::Broodwar->self()->minerals() >= 150 && BWAPI::Broodwar->self()->gas() >= 150 &&
+			BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Cybernetics_Core) > 0)  {
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Stargate, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->minerals() >= 150) {
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Gateway, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;		
+		}
+		
+	}
+	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) {
+		if (BWAPI::Broodwar->self()->minerals() >= 150 && BWAPI::Broodwar->self()->gas() >= 100 &&
+			BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Factory) > 0)  {
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Starport, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->minerals() >= 200 && BWAPI::Broodwar->self()->gas() >= 100 &&
+			BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Terran_Barracks) > 0)  {
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Factory, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+		if (BWAPI::Broodwar->self()->minerals() >= 150) {
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Barracks, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+	}
+	else if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg) {
+		if (BWAPI::Broodwar->self()->minerals() >= 300)  {
+			BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Hatchery, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
+			return;
+		}
+	}
+}
 
 //void StrategyManager::executeHydraTraining()
 //{
